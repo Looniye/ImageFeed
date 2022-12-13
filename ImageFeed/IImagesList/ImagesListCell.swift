@@ -6,3 +6,4 @@ final class ImagesListCell: UITableViewCell {
     @IBOutlet var dataLabel: UILabel!
     static let reusedIdentifier = "ImagesListCell"
 }
+
