@@ -1,13 +1,11 @@
 import UIKit
 
 final class ProfileViewController: UIViewController{
-    @IBOutlet private var avatarImageView: UIImageView!
-    @IBOutlet private var nameLabel: UILabel!
-    @IBOutlet private var loginNameLabel: UILabel!
-    @IBOutlet private var descriptionLabel: UILabel!
-    @IBOutlet private var logoutButton: UIButton!
-    
-    @IBAction private func didTapLogoutButton() {}
+    private var viewProfileImage = UIImageView()
+    private var labelNameProfile = UILabel()
+    private var loginNameLabel = UILabel()
+    private var descriptionLabel = UILabel()
+    private var buttonLogout = UIButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,35 +16,35 @@ final class ProfileViewController: UIViewController{
         let imageProfile = UIImage(named: "UserPhoto")
         let imageButton = UIImage(named: "logout")
 
-        let viewProfileImage = UIImageView(image: imageProfile)
+        viewProfileImage = UIImageView(image: imageProfile)
         viewProfileImage.tintColor = .gray
         viewProfileImage.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(viewProfileImage)
 
-        let labelNameProfile = UILabel()
+        labelNameProfile = UILabel()
         labelNameProfile.text = "Екатерина Новикова"
         labelNameProfile.textColor = UIColor(named: "YP White")
         labelNameProfile.font = UIFont.systemFont(ofSize: 23)
         labelNameProfile.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(labelNameProfile)
 
-        let loginNameLabel = UILabel()
+        loginNameLabel = UILabel()
         loginNameLabel.text = "@ekaterina_nov"
         loginNameLabel.textColor = UIColor(named: "YP Gray")
         loginNameLabel.font = UIFont.systemFont(ofSize: 13)
         loginNameLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(loginNameLabel)
 
-        let descriptionLabel = UILabel()
+        descriptionLabel = UILabel()
         descriptionLabel.text = "Hello, world!"
         descriptionLabel.textColor = UIColor(named: "YP White")
         descriptionLabel.font = UIFont.systemFont(ofSize: 13)
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(descriptionLabel)
 
-        let buttonLogout = UIButton.systemButton(with: imageButton!,
+        buttonLogout = UIButton.systemButton(with: imageButton!,
                                                  target: self,
-                                                 action: #selector(buttonAction))
+                                                 action: #selector(didTapLogoutButton))
         
         buttonLogout.tintColor = UIColor(named: "YP Red")
         buttonLogout.translatesAutoresizingMaskIntoConstraints = false
@@ -72,5 +70,5 @@ final class ProfileViewController: UIViewController{
         ])
     }
     
-    @objc func buttonAction(){}
+    @objc func didTapLogoutButton() { }
 }
