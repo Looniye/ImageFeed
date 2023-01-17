@@ -69,6 +69,5 @@ final class ProfileViewController: UIViewController{
             buttonLogout.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -26)
         ])
     }
-    
-    @objc func didTapLogoutButton() { }
+    @objc private func didTapLogoutButton() { }
 }
