@@ -11,6 +11,7 @@ final class OAuth2Service {
             OAuth2TokenStorage().token = newValue!
         }
     }
+    
     func fetchOAuthToken(
         _ code: String,
         completion: @escaping (Result<String, Error>) -> Void
@@ -28,9 +29,9 @@ final class OAuth2Service {
             }
         }
         task.resume()
-        
     }
 }
+
 extension OAuth2Service {
     private func object(
         for request: URLRequest,

@@ -10,11 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Tab Bar Contriller-->
+        <!--Tab Bar Controller-->
         <scene sceneID="aCL-5h-BNQ">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="v6u-Da-Hwe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <tabBarController storyboardIdentifier="TabBarViewController" id="mJg-00-bzP" customClass="TabBarContriller" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarViewController" id="mJg-00-bzP" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Pf1-GR-C3U">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -29,13 +28,13 @@
                         <segue destination="s8R-lK-xee" kind="relationship" relationship="viewControllers" id="WU5-wI-eNU"/>
                     </connections>
                 </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="v6u-Da-Hwe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1444" y="40"/>
         </scene>
         <!--ImagesList-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <viewController title="ImagesList" id="BYZ-38-t0r" customClass="ImagesListViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" customClass="ImagesListCell" customModule="ImageFeed" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
@@ -58,7 +57,7 @@
                                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.CornerRadius">
                                                             <integer key="value" value="16"/>
                                                         </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="kayer.masksToBounds" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="COm-zO-pYc" userLabel="Like Button">
@@ -110,13 +109,13 @@
                         <segue destination="D8i-pp-9TR" kind="presentation" identifier="ShowSingleImage" id="bC3-uR-lve"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-350" y="-281"/>
         </scene>
         <!--Profile-->
         <scene sceneID="oj7-gt-4gy">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="GoM-AF-ROf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController title="Profile" id="s8R-lK-xee" customClass="ProfileViewController" customModule="ImageFeed" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Pv0-RN-cmz">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
@@ -125,13 +124,13 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="tab_profile_active" id="p8B-dL-k1l"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GoM-AF-ROf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-349" y="432"/>
         </scene>
         <!--Single View Controller-->
         <scene sceneID="j63-52-LNy">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="WRA-e0-aK3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController title="Single" modalPresentationStyle="fullScreen" id="D8i-pp-9TR" userLabel="Single View Controller" customClass="SingleImageViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="s3i-Zb-pRu">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
@@ -197,13 +196,14 @@
                         <outlet property="scrollView" destination="pxo-ls-stC" id="Ihg-vV-oOD"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WRA-e0-aK3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="747" y="-282"/>
         </scene>
         <!--Auth View Controller-->
         <scene sceneID="X6E-pG-ZPn">
             <objects>
-                <viewController id="Ppp-sJ-pje" customClass="AuthViewController" customModule="Image_Feed" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Ppp-sJ-pje" customClass="AuthViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ldF-pW-2hK">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -240,7 +240,6 @@
                         <constraints>
                             <constraint firstItem="VXi-eE-0SP" firstAttribute="trailing" secondItem="Ku0-Nt-qDn" secondAttribute="trailing" constant="16" id="5cQ-00-NRV"/>
                             <constraint firstItem="97N-SS-Dvw" firstAttribute="centerY" secondItem="ldF-pW-2hK" secondAttribute="centerY" id="Xyi-nP-fNB"/>
-                            <constraint firstItem="Ku0-Nt-qDn" firstAttribute="centerX" secondItem="ldF-pW-2hK" secondAttribute="centerX" id="eXD-eI-n5M"/>
                             <constraint firstItem="Ku0-Nt-qDn" firstAttribute="leading" secondItem="VXi-eE-0SP" secondAttribute="leading" constant="16" id="fea-OA-gNf"/>
                             <constraint firstItem="VXi-eE-0SP" firstAttribute="bottom" secondItem="Ku0-Nt-qDn" secondAttribute="bottom" constant="90" id="qWP-x3-Leb"/>
                             <constraint firstItem="97N-SS-Dvw" firstAttribute="centerX" secondItem="ldF-pW-2hK" secondAttribute="centerX" id="xTY-Ur-Mgh"/>
@@ -250,12 +249,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DgY-cN-dyF" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-298" y="-1012"/>
+            <point key="canvasLocation" x="-298.47328244274809" y="-1012.6760563380283"/>
         </scene>
         <!--Web View View Controller-->
         <scene sceneID="Ops-Je-NZ5">
             <objects>
-                <viewController id="7q6-f7-VKk" customClass="WebViewViewController" customModule="Image_Feed" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="7q6-f7-VKk" customClass="WebViewViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HsS-e1-hCq">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -330,7 +329,7 @@
         <!--Unsplash-->
         <scene sceneID="MnS-pr-oid">
             <objects>
-                <viewController storyboardIdentifier="SplashViewController" id="yft-Gg-hFF" customClass="SplashViewController" customModule="Image_Feed" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SplashViewController" id="yft-Gg-hFF" customClass="SplashViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hQI-tT-iic">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

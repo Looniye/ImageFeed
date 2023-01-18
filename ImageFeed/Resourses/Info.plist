@@ -4,10 +4,6 @@
 <dict>
 	<key>Fonts provided by application</key>
 	<array/>
-	<key>item 0</key>
-	<string>Ys Display-Bold.ttf</string>
-	<key>item 1</key>
-	<string>Ys Display-Medium.ttf</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -27,5 +23,9 @@
 			</array>
 		</dict>
 	</dict>
+	<key>item 0</key>
+	<string>Ys Display-Bold.ttf</string>
+	<key>item 1</key>
+	<string>Ys Display-Medium.ttf</string>
 </dict>
 </plist>

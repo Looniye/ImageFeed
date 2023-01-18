@@ -41,7 +41,6 @@ extension ImagesListViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: ImagesListCell.reusedIdentifier, for: indexPath)
         
         guard let imagesListCell = cell as? ImagesListCell else {
-            print("picture don't load")
             return UITableViewCell()
         }
         
