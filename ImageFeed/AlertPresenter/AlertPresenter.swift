@@ -1,14 +1,13 @@
-import Foundation
 import UIKit
 
-class AlertPresenter: AlertPresenterProtocol{
-    weak var delegate: UIViewController?
+final class AlertPresenter: AlertPresenterProtocol{
+    private weak var delegate: UIViewController?
     init(delegate: UIViewController) {
         self.delegate = delegate
     }
     
     func showError(error model: AlertModel) {
-        let alert = UIAlertController.init(
+        let alert = UIAlertController(
             title: model.title,
             message: model.message,
             preferredStyle: .alert

@@ -6,30 +6,22 @@ final class OAuth2Service {
     private let session = URLSession.shared
     private var lastCode: String?
     private var task: URLSessionTask?
-    private (set) var authToken: String? {
-        get {
-            return OAuth2TokenStorage().token
-        }
-        set {
-            OAuth2TokenStorage().token = newValue!
-        }
-    }
+    private let token = OAuth2TokenStorage.shared
     
-    func fetchOAuthToken(_ code: String, completion: @escaping (Result<String, Error>) -> Void) {
+    func fetchOAuthToken(code: String, completion: @escaping (Result<String, Error>) -> Void) {
         assert(Thread.isMainThread)
-        if lastCode == code { return }
+        guard lastCode != code else { return }
         task?.cancel()
         lastCode = code
         let request = authTokenRequest(code: code)
         let task = self.session.objectTask(for: request) { [weak self] (result: Result<OAuthTokenResponseBody, Error>) in
             guard let self = self else {return}
             switch result {
-            case .success(let jsonData):
-                OAuth2TokenStorage().token = jsonData.accessToken
-                completion(.success(jsonData.accessToken))
+            case .success(let decodedObject):
+                completion(.success(decodedObject.accessToken))
                 self.task = nil
-            case .failure:
-                self.lastCode = nil
+            case .failure(let error):
+                completion(.failure(error))
             }
         }
         self.task = task
@@ -41,9 +33,9 @@ extension OAuth2Service {
     private func authTokenRequest(code: String) -> URLRequest {
         var urlComponents = URLComponents(string: unsplashAuthorizeTokenURLString)!
         urlComponents.queryItems = [
-            URLQueryItem(name: "client_id", value: AccessKey),
-            URLQueryItem(name: "client_secret", value: SecretKey),
-            URLQueryItem(name: "redirect_uri", value: RedirectURI),
+            URLQueryItem(name: "client_id", value: accessKey),
+            URLQueryItem(name: "client_secret", value: secretKey),
+            URLQueryItem(name: "redirect_uri", value: redirectURI),
             URLQueryItem(name: "code", value: code),
             URLQueryItem(name: "grant_type", value: "authorization_code")
         ]

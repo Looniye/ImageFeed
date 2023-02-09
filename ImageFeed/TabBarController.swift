@@ -1,7 +1,8 @@
 import UIKit
  
-final class TabBarController: UITabBarController {
+final class TabBarController: UITabBarController, UITabBarControllerDelegate {
     override func awakeFromNib() {
+        
         super.awakeFromNib()
         let storyboard = UIStoryboard(name: "Main", bundle: .main)
             
@@ -18,5 +19,9 @@ final class TabBarController: UITabBarController {
 
        self.viewControllers = [imagesListViewController, profileViewController]
     }
+    override func viewDidLoad() {
+            super.viewDidLoad()
+            self.tabBarController?.delegate = self
+       }
 }
 

@@ -6,7 +6,7 @@ final class ProfileImageService {
     private var lastToken: String?
     static let shared = ProfileImageService()
     private(set) var avatarURL: String?
-    static let DidChangeNotification = Notification.Name(rawValue: "ProfileImageProviderDidChange")
+    static let didChangeNotification = Notification.Name(rawValue: "ProfileImageProviderDidChange")
     
     func fetchProfileImageURL(username: String, token: String?, completion: @escaping (Result<Void, Error>) -> Void){
         assert(Thread.isMainThread)
@@ -24,10 +24,10 @@ final class ProfileImageService {
             case .success(let sec):
                 if let image = sec.profileImage?.image {
                     self.avatarURL = image
-                    NotificationCenter.default                                     // 1
-                        .post(                                                     // 2
-                            name: ProfileImageService.DidChangeNotification,       // 3
-                            object: self,                                          // 4
+                    NotificationCenter.default                                     
+                        .post(
+                            name: ProfileImageService.didChangeNotification,
+                            object: self,
                             userInfo: ["URL": image])
                 }
                 completion(.success(()))

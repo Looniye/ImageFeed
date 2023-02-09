@@ -22,10 +22,10 @@ final class WebViewViewController: UIViewController {
         
         var urlComponents = URLComponents(string: UnsplashAuthorizeURLString)!
         urlComponents.queryItems = [
-            URLQueryItem(name: "client_id", value: AccessKey),
-            URLQueryItem(name: "redirect_uri", value: RedirectURI),
+            URLQueryItem(name: "client_id", value: accessKey),
+            URLQueryItem(name: "redirect_uri", value: redirectURI),
             URLQueryItem(name: "response_type", value: "code"),
-            URLQueryItem(name: "scope", value: AccessScope)
+            URLQueryItem(name: "scope", value: accessScope)
         ]
         let url = urlComponents.url!
         
@@ -90,6 +90,14 @@ extension WebViewViewController: WKNavigationDelegate {
             return codeItem.value
         } else {
             return nil
+        }
+    }
+    static func clean() {
+        HTTPCookieStorage.shared.removeCookies(since: Date.distantPast)
+        WKWebsiteDataStore.default().fetchDataRecords(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes()) { records in
+            records.forEach { record in
+                WKWebsiteDataStore.default().removeData(ofTypes: record.dataTypes, for: [record], completionHandler: {})
+            }
         }
     }
 }

@@ -10,24 +10,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Tab Bar Controller-->
-        <scene sceneID="aCL-5h-BNQ">
-            <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="v6u-Da-Hwe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <tabBarController storyboardIdentifier="TabBarViewController" id="mJg-00-bzP" customClass="TabBarController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Pf1-GR-C3U">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="selectedImageTintColor" name="YP White"/>
-                        <tabBarAppearance key="standardAppearance">
-                            <color key="backgroundColor" name="YP Black"/>
-                        </tabBarAppearance>
-                    </tabBar>
-                </tabBarController>
-            </objects>
-            <point key="canvasLocation" x="-1240" y="-282"/>
-        </scene>
         <!--ImagesList-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -57,8 +39,11 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="COm-zO-pYc" userLabel="Like Button">
-                                                    <rect key="frame" x="319.66666666666669" y="10" width="53.333333333333314" height="40"/>
+                                                    <rect key="frame" x="319" y="10" width="54" height="40"/>
                                                     <buttonConfiguration key="configuration" style="plain" image="like_button_on"/>
+                                                    <connections>
+                                                        <action selector="likeButtonAction:" destination="WVw-cU-gkP" eventType="touchUpInside" id="FM0-4O-xvP"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="27 августа 2022" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wt7-f7-ht1" userLabel="Data Label">
                                                     <rect key="frame" x="28" y="163" width="337" height="15.333333333333343"/>
@@ -83,10 +68,14 @@
                                         <connections>
                                             <outlet property="cellImage" destination="plN-Za-Row" id="OlM-34-W70"/>
                                             <outlet property="dataLabel" destination="Wt7-f7-ht1" id="9si-kT-2sW"/>
-                                            <outlet property="likeButton" destination="COm-zO-pYc" id="mtQ-IG-HBo"/>
+                                            <outlet property="likeButton" destination="COm-zO-pYc" id="aLF-Ns-Gwo"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="9Pv-yb-GDA"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="OmD-mo-y8q"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -184,7 +173,6 @@
         <!--Auth View Controller-->
         <scene sceneID="X6E-pG-ZPn">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="DgY-cN-dyF" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="AuthViewController" id="Ppp-sJ-pje" customClass="AuthViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ldF-pW-2hK">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
@@ -229,6 +217,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="9P5-w8-0lw"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DgY-cN-dyF" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-298.47328244274809" y="-1012.6760563380283"/>
         </scene>
@@ -306,6 +295,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JYh-of-B2k" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1239" y="-1013"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="x9L-0a-V9G">
+            <objects>
+                <tabBarController storyboardIdentifier="TabBarViewController" id="0v5-ys-2jr" customClass="TabBarController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="CWb-VI-6xx">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" name="YP White"/>
+                        <tabBarAppearance key="standardAppearance">
+                            <color key="backgroundColor" name="YP Black"/>
+                        </tabBarAppearance>
+                    </tabBar>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RIF-XP-4Ek" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1201" y="-282"/>
         </scene>
     </scenes>
     <resources>

@@ -5,27 +5,27 @@ final class ProfileService {
     private var task: URLSessionTask?
     private var lastToken: String?
     static let shared = ProfileService()
-    fileprivate let profileInfoURLString: String = "https://api.unsplash.com/me"
     private(set) var profile: Profile?
     
-    func fetchProfile(_ token: String, completion: @escaping (Result<String, Error>) -> Void){
+    func fetchProfile(_ token: String, completion: @escaping (Result<Profile, Error>) -> Void){
         assert(Thread.isMainThread)
-        if lastToken == token { return }
         task?.cancel()
-        lastToken = token
         
         let request = self.makeRequest(token: token)
         let task = self.session.objectTask(for: request) { [weak self]
-            (result: Result<Profile, Error>) in
-            guard let self = self else { return }
-            switch result {
-            case .success(let profile):
-                self.profile = profile
-                completion(.success(profile.username))
-                self.task = nil
-            case .failure:
-                self.lastToken = nil
-                return
+            (result: Result<ProfileResult, Error>) in
+            DispatchQueue.main.async {
+                guard let self = self else { return }
+                switch result {
+                case .success(let decodedObject):
+                    let profile = Profile(decodedData: decodedObject)
+                    self.profile = profile
+                    completion(.success(profile))
+                case .failure(let error):
+                    completion(.failure(error))
+                    print("error")
+                    return
+                }
             }
         }
         self.task = task
