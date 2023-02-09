@@ -1,7 +1,7 @@
 import UIKit
 import Kingfisher
 
-class ImagesListViewController: UIViewController {
+final class ImagesListViewController: UIViewController {
     @IBOutlet private var tableView: UITableView!
     var photos: [Photo] = []
     private let imagesListService = ImagesListService.shared
@@ -39,7 +39,6 @@ class ImagesListViewController: UIViewController {
                 tableView.insertRows(at: indexPaths, with: .bottom)
             } completion: { _ in }
         }
-        print(newCount)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -141,11 +140,10 @@ extension ImagesListViewController: ImagesListCellDelegate {
                 case .success(let photo):
                     self.photos[indexPath.row].isLiked = photo.isLiked
                     cell.setIsLiked(isLiked: photo.isLiked)
-                    UIBlockingProgressHUD.dismiss()
                 case .failure(let error):
                     print(error)
-                    UIBlockingProgressHUD.dismiss()
                 }
+                UIBlockingProgressHUD.dismiss()
             }
         }
     }

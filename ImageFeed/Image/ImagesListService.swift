@@ -10,7 +10,7 @@ final class ImagesListService {
     static let didChangeNotification = Notification.Name(rawValue: "ImagesListServiceDidChange")
     private var lastLoadedPage: Int?
     
-    init() {}
+    private init() {}
     
     func fetchPhotosNextPage() {
         assert(Thread.isMainThread)
