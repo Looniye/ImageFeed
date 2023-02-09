@@ -82,7 +82,7 @@ final class SplashViewController: UIViewController {
                 case .failure:
                     self.showError()
                     UIBlockingProgressHUD.dismiss()
-                    self.showNextScreen(withID: "SplashViewController")
+                    self.showNextScreen(withID: "TabBarViewController")
                 }
                 UIBlockingProgressHUD.dismiss()
             }
