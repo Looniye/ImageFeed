@@ -153,6 +153,15 @@ final class ProfileViewController: UIViewController{
         self.gradientProfileImage.removeFromSuperlayer()
     }
     
+    private func clearAll() {
+        oAuth2TokenStorage.removeAllKeys()
+        WebViewViewController.clean()
+        tabBarController?.dismiss(animated: true)
+        guard let window = UIApplication.shared.windows.first else {
+            fatalError("Invalid Configuration") }
+        window.rootViewController = SplashViewController()
+    }
+    
     private func onLogout() {
         let alert = UIAlertController(
             title: "Пока, пока!",
@@ -166,7 +175,8 @@ final class ProfileViewController: UIViewController{
         ) { [weak self] _ in
             guard let self = self else { return }
             DispatchQueue.main.async {
-                self.onLogout()
+                self.clearAll()
+                
             }
         }
         
