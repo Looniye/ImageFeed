@@ -12,7 +12,7 @@ struct PhotoResult: Decodable {
     let urls: [String: String]
     let createdAt: String?
     let isLiked: Bool
-
+    
     enum CodingKeys: String, CodingKey {
         case id, urls, width, height
         case createdAt = "created_at"
@@ -20,5 +20,3 @@ struct PhotoResult: Decodable {
         case isLiked = "liked_by_user"
     }
 }
-
-

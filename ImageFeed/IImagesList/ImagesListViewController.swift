@@ -7,13 +7,10 @@ class ImagesListViewController: UIViewController {
     private let imagesListService = ImagesListService.shared
     private let ShowSingleImageSegueIdentifier = "ShowSingleImage"
     private let animationGradient = AnimationGradientFactory.shared
-   // private var photosName = [String]()
     private var imagesListServiceObserver: NSObjectProtocol?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //tableView.delegate = self
-        //tableView.dataSource = self
         imagesListService.fetchPhotosNextPage()
     }
     
@@ -134,7 +131,6 @@ extension ImagesListViewController: ImagesListCellDelegate {
         UIBlockingProgressHUD.show()
         guard let indexPath = tableView.indexPath(for: cell) else { return }
         let photo = photos[indexPath.row]
-        print("ещё жмак")
         imagesListService.changeLike(photoId: photo.id, isLike: !photo.isLiked, indexPath: indexPath.row) { [weak cell, weak self] response in
             guard let cell = cell,
                   let self = self

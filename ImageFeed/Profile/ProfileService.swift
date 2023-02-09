@@ -3,7 +3,6 @@ import Foundation
 final class ProfileService {
     private let session = URLSession.shared
     private var task: URLSessionTask?
-    private var lastToken: String?
     static let shared = ProfileService()
     private(set) var profile: Profile?
     

@@ -6,22 +6,21 @@ final class OAuth2TokenStorage {
     private enum Keys: String {
         case bearerToken
     }
-     private init() {}
+    private init() {}
     
-     var token: String? {
-         get {
-             keychainStorage.string(forKey: Keys.bearerToken.rawValue)
-         }
-         set {
-             if let token = newValue {
-                 keychainStorage.set(token, forKey: Keys.bearerToken.rawValue)
-             } else {
-                 keychainStorage.removeObject(forKey: Keys.bearerToken.rawValue)
-             }
-         }
-     }
-func removeAllKeys() {
-    KeychainWrapper.standard.removeAllKeys()
- }
-    
+    var token: String? {
+        get {
+            keychainStorage.string(forKey: Keys.bearerToken.rawValue)
+        }
+        set {
+            if let token = newValue {
+                keychainStorage.set(token, forKey: Keys.bearerToken.rawValue)
+            } else {
+                keychainStorage.removeObject(forKey: Keys.bearerToken.rawValue)
+            }
+        }
+    }
+    func removeAllKeys() {
+        KeychainWrapper.standard.removeAllKeys()
+    }
 }

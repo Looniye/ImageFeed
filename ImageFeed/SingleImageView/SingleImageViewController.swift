@@ -2,7 +2,6 @@ import UIKit
 import Kingfisher
 
 final class SingleImageViewController: UIViewController{
-   // var fullImageUrl: String?
     var image: URL! {
         didSet {
             guard isViewLoaded else { return }
@@ -23,11 +22,8 @@ final class SingleImageViewController: UIViewController{
         super.viewDidLoad()
         scrollView.minimumZoomScale = 0.1
         scrollView.maximumZoomScale = 1.25
-        //imageView.image = image
         setImage()
     }
-    
-   
     
     private func setImage() {
         UIBlockingProgressHUD.show()
@@ -37,7 +33,6 @@ final class SingleImageViewController: UIViewController{
             case .success(let imageResult):
                 self.rescaleAndCenterImageInScrollView(image: imageResult.image)
             case .failure: break
-               // self.displayAlert()
             }
             UIBlockingProgressHUD.dismiss()
         }
@@ -71,5 +66,5 @@ extension SingleImageViewController: UIScrollViewDelegate {
         let y = (newContentSize.height - visibleRectSize.height) / 2
         scrollView.setContentOffset(CGPoint(x: x, y: y), animated: false)
     }
-
+    
 }

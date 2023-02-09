@@ -16,7 +16,6 @@ final class ProfileViewController: UIViewController{
     let gradient = CAGradientLayer()
     private let oAuth2TokenStorage = OAuth2TokenStorage.shared
     private var profileService = ProfileService.shared
-    private(set) var profile: Profile?
     private var profileImageServiceObserver: NSObjectProtocol?
     private let animationGradient = AnimationGradientFactory.shared
     
@@ -61,7 +60,7 @@ final class ProfileViewController: UIViewController{
         
         gradientNameProfile = animationGradient.createGradient(width: 223, height: 23, cornerRadius: 11.5)
         self.labelNameProfile.layer.addSublayer(gradientNameProfile)
-
+        
     }
     private func setLoginNameLabel() {
         loginNameLabel.text = "@ekaterina_nov"
@@ -148,8 +147,8 @@ final class ProfileViewController: UIViewController{
         
         viewProfileImage.kf.indicatorType = .activity
         viewProfileImage.kf.setImage(with: imageUrl,
-                              placeholder: UIImage(named: "placeholder.fill"),
-                              options: [.processor(processor)])
+                                     placeholder: UIImage(named: "placeholder.fill"),
+                                     options: [.processor(processor)])
         print(imageUrl)
         self.gradientProfileImage.removeFromSuperlayer()
     }
@@ -180,6 +179,5 @@ final class ProfileViewController: UIViewController{
         alert.addAction(dismissAction)
         
         present(alert, animated: true)
-
     }
 }

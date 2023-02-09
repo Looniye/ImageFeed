@@ -17,20 +17,18 @@ final class ImagesListCell: UITableViewCell {
     
     @IBAction func likeButtonAction(_ sender: Any) {
         delegate?.imageListCellDidTapLike(self)
-        print("жмак")
     }
     
     
     
     override func prepareForReuse() {
         super.prepareForReuse()
-      //  cellImage.kf.cancelDownloadTask()
+        cellImage.kf.cancelDownloadTask()
     }
     
     public func setIsLiked(isLiked: Bool) {
         let likeImage = isLiked ? UIImage(named: "like_button_on") : UIImage(named: "like_button_off")
         likeButton.imageView?.image = likeImage
-        print("лайки проставлены")
     }
 }
 
