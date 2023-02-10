@@ -1,12 +1,21 @@
 import UIKit
 import ProgressHUD
 
-final class SplashViewController: UIViewController {
+final class SplashViewController: UIViewController, AuthViewControllerDelegate {
+    func authViewController(_ vc: AuthViewController, didAuthenticateWithCode code: String) {
+        dismiss(animated: true) { [weak self] in
+            guard let self = self else { return }
+            UIBlockingProgressHUD.show()
+            self.fetchOAuthToken(code)
+        }
+    }
+    
     private let storyboardInstance = UIStoryboard(name: "Main", bundle: nil)
     private var alertPresent: AlertPresenterProtocol?
     private let ShowAuthenticationScreenSegueIdentifier = "ShowAuthenticationScreen"
     private let oAuth2TokenStorage = OAuth2TokenStorage.shared
     private let profileService = ProfileService.shared
+    private let oAuthService = OAuth2Service.shared
     private var viewImageLogo = UIImageView()
     override func viewDidLoad() {
         view.backgroundColor = UIColor(named: "YP Black")
@@ -43,9 +52,12 @@ final class SplashViewController: UIViewController {
             fetchProfile(token: token)
         } else {
             let storyboard = UIStoryboard(name: "Main", bundle: .main)
-            guard let authViewController = storyboard.instantiateViewController(withIdentifier: "AuthViewController")
-                    as? AuthViewController else {return}
-            present(authViewController, animated: true)        }
+            guard
+                let authViewController = storyboard.instantiateViewController(withIdentifier: "AuthViewController") as? AuthViewController else { return }
+            authViewController.delegate = self
+            authViewController.modalPresentationStyle = .fullScreen
+            self.present(authViewController, animated: true)
+        }
     }
     
     private func switchToTabBarController() {
@@ -82,9 +94,25 @@ final class SplashViewController: UIViewController {
                 case .failure:
                     self.showError()
                     UIBlockingProgressHUD.dismiss()
-                    self.showNextScreen(withID: "TabBarViewController")
+                    self.showNextScreen(withID: "SplashViewController")
                 }
                 UIBlockingProgressHUD.dismiss()
+            }
+        }
+    }
+    
+    private func fetchOAuthToken(_ code: String) {
+        oAuthService.fetchOAuthToken(code: code) { [weak self] result in
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                UIBlockingProgressHUD.dismiss()
+                switch result {
+                case .success(let bearerToken):
+                    self.fetchProfile(token: bearerToken)
+                    self.switchToTabBarController()
+                case .failure:
+                    self.showError()
+                }
             }
         }
     }

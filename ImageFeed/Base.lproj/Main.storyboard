@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ppp-sJ-pje">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -206,7 +206,7 @@
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="VXi-eE-0SP"/>
-                        <color key="backgroundColor" red="0.1019607843" green="0.1058823529" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" name="YP Black"/>
                         <constraints>
                             <constraint firstItem="VXi-eE-0SP" firstAttribute="trailing" secondItem="Ku0-Nt-qDn" secondAttribute="trailing" constant="16" id="5cQ-00-NRV"/>
                             <constraint firstItem="97N-SS-Dvw" firstAttribute="centerY" secondItem="ldF-pW-2hK" secondAttribute="centerY" id="Xyi-nP-fNB"/>

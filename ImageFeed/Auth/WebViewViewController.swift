@@ -1,8 +1,6 @@
 import UIKit
 import WebKit
 
-fileprivate let UnsplashAuthorizeURLString = "https://unsplash.com/oauth/authorize"
-
 protocol WebViewViewControllerDelegate: AnyObject {
     func webViewViewController(_ vc: WebViewViewController, didAuthenticateWithCode code: String)
     func webViewViewControllerDidCancel(_ vc: WebViewViewController)
@@ -78,7 +76,18 @@ extension WebViewViewController: WKNavigationDelegate {
             decisionHandler(.allow)
         }
     }
-    
+    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
+        if error._domain == "WebKitErrorDomain" {
+            if let info = error._userInfo as? [String: Any] {
+                if info["NSErrorFailingURLKey"] is URL {
+                    print(info)
+                }
+                if info["NSErrorFailingURLStringKey"] is String {
+                    print(info)
+                }
+            }
+        }
+    }
     private func code(from navigationAction: WKNavigationAction) -> String? {
         if
             let url = navigationAction.request.url,
