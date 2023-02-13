@@ -23,4 +23,7 @@ final class OAuth2TokenStorage {
     func removeAllKeys() {
         KeychainWrapper.standard.removeAllKeys()
     }
+    func store(token: String) {
+        self.token = token
+    }
 }

@@ -3,12 +3,15 @@ import Foundation
 final class ProfileService {
     private let session = URLSession.shared
     private var task: URLSessionTask?
+    private var lastCode: String?
     static let shared = ProfileService()
     private(set) var profile: Profile?
     
     func fetchProfile(_ token: String, completion: @escaping (Result<Profile, Error>) -> Void){
         assert(Thread.isMainThread)
+        if lastCode == token { return }
         task?.cancel()
+        lastCode = token
         
         let request = self.makeRequest(token: token)
         let task = self.session.objectTask(for: request) { [weak self]

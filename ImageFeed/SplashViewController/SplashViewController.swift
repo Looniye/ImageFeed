@@ -1,14 +1,7 @@
 import UIKit
 import ProgressHUD
 
-final class SplashViewController: UIViewController, AuthViewControllerDelegate {
-    func authViewController(_ vc: AuthViewController, didAuthenticateWithCode code: String) {
-        dismiss(animated: true) { [weak self] in
-            guard let self = self else { return }
-            UIBlockingProgressHUD.show()
-            self.fetchOAuthToken(code)
-        }
-    }
+final class SplashViewController: UIViewController {
     
     private let storyboardInstance = UIStoryboard(name: "Main", bundle: nil)
     private var alertPresent: AlertPresenterProtocol?
@@ -20,6 +13,7 @@ final class SplashViewController: UIViewController, AuthViewControllerDelegate {
     override func viewDidLoad() {
         view.backgroundColor = UIColor(named: "YP Black")
         setViewImage()
+        alertPresent = AlertPresenter(delegate: self)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -68,13 +62,20 @@ final class SplashViewController: UIViewController, AuthViewControllerDelegate {
     }
     
     private func showError() {
-        let alertError: AlertModel = {
-            AlertModel(
-                title: "Что-то пошло не так",
-                message: "Не удалось войти в систему",
-                buttonText: "Ок") {}
-        }()
-        self.alertPresent?.showError(error: alertError)
+        DispatchQueue.main.async { [weak self] in
+            guard let self else {return}
+            let alertError: AlertModel = {
+                AlertModel(
+                    title: "Что-то пошло не так",
+                    message: "Не удалось войти в систему",
+                    buttonText: "Ок",
+                    completion: {
+                        self.showNextScreen(withID: "AuthViewController")
+                    }
+                )
+            }()
+            self.alertPresent?.showAlert(error: alertError)
+        }
     }
     
     private func showNextScreen(withID screenID: String) {
@@ -82,22 +83,14 @@ final class SplashViewController: UIViewController, AuthViewControllerDelegate {
         UIApplication.shared.windows.first?.rootViewController = nextViewController
         UIApplication.shared.windows.first?.makeKeyAndVisible()
     }
-    
-    private func fetchProfile(token: String) {
-        profileService.fetchProfile(token) { [weak self] result in
+}
+
+extension SplashViewController: AuthViewControllerDelegate {
+    func authViewController(_ vc: AuthViewController, didAuthenticateWithCode code: String) {
+        dismiss(animated: true) { [weak self] in
             guard let self = self else { return }
-            DispatchQueue.main.async {
-                switch result {
-                case .success:
-                    ProfileImageService.shared.fetchProfileImageURL(username: (self.profileService.profile?.username)!, token: token) { _ in }
-                    self.switchToTabBarController()
-                case .failure:
-                    self.showError()
-                    UIBlockingProgressHUD.dismiss()
-                    self.showNextScreen(withID: "SplashViewController")
-                }
-                UIBlockingProgressHUD.dismiss()
-            }
+            UIBlockingProgressHUD.show()
+            self.fetchOAuthToken(code)
         }
     }
     
@@ -105,15 +98,30 @@ final class SplashViewController: UIViewController, AuthViewControllerDelegate {
         oAuthService.fetchOAuthToken(code: code) { [weak self] result in
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
-                UIBlockingProgressHUD.dismiss()
                 switch result {
                 case .success(let bearerToken):
+                    self.oAuth2TokenStorage.store(token: bearerToken)
                     self.fetchProfile(token: bearerToken)
-                    self.switchToTabBarController()
                 case .failure:
                     self.showError()
                 }
+                UIBlockingProgressHUD.dismiss()
             }
         }
     }
+    
+    private func fetchProfile(token: String) {
+        profileService.fetchProfile(token) { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(let profile):
+                ProfileImageService.shared.fetchProfileImageURL(username: profile.username) { _ in }
+                self.switchToTabBarController()
+            case .failure:
+                self.showError()
+            }
+            UIBlockingProgressHUD.dismiss()
+        }
+    }
 }
+

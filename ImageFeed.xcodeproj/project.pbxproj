@@ -32,7 +32,6 @@
 		C56C2539293E125400929B12 /* YS Display-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C56C2537293E125400929B12 /* YS Display-Medium.ttf */; };
 		C56C253D293F69FB00929B12 /* SingleImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56C253C293F69FB00929B12 /* SingleImageViewController.swift */; };
 		C56E785E29925520006B83E1 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56E785D29925520006B83E1 /* Photo.swift */; };
-		C587517A2992D5A100CF5746 /* AlertPresenterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58751792992D5A100CF5746 /* AlertPresenterDelegate.swift */; };
 		C587517C2992DCA200CF5746 /* AnimationGradientFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C587517B2992DCA200CF5746 /* AnimationGradientFactory.swift */; };
 		C5C2399629278EB000260401 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C2399529278EB000260401 /* AppDelegate.swift */; };
 		C5C2399829278EB000260401 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C2399729278EB000260401 /* SceneDelegate.swift */; };
@@ -68,7 +67,6 @@
 		C56C2537293E125400929B12 /* YS Display-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "YS Display-Medium.ttf"; sourceTree = "<group>"; };
 		C56C253C293F69FB00929B12 /* SingleImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleImageViewController.swift; sourceTree = "<group>"; };
 		C56E785D29925520006B83E1 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
-		C58751792992D5A100CF5746 /* AlertPresenterDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPresenterDelegate.swift; sourceTree = "<group>"; };
 		C587517B2992DCA200CF5746 /* AnimationGradientFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationGradientFactory.swift; sourceTree = "<group>"; };
 		C5C2399229278EB000260401 /* ImageFeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageFeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5C2399529278EB000260401 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -131,7 +129,6 @@
 				C5194710297E9D7100EF16EF /* AlertModel.swift */,
 				C5194713297E9DF700EF16EF /* AlertPresenter.swift */,
 				C5194715297E9E5400EF16EF /* AlertPresenterProtocol.swift */,
-				C58751792992D5A100CF5746 /* AlertPresenterDelegate.swift */,
 			);
 			path = AlertPresenter;
 			sourceTree = "<group>";
@@ -339,7 +336,6 @@
 				C5EAAB3F296B826E00EA5633 /* Constants.swift in Sources */,
 				C56C253D293F69FB00929B12 /* SingleImageViewController.swift in Sources */,
 				C5EAAB44296B90D400EA5633 /* WebViewViewController.swift in Sources */,
-				C587517A2992D5A100CF5746 /* AlertPresenterDelegate.swift in Sources */,
 				C5194716297E9E5400EF16EF /* AlertPresenterProtocol.swift in Sources */,
 				C522A14129958BC300104A75 /* URLSession.swift in Sources */,
 				C5C2399829278EB000260401 /* SceneDelegate.swift in Sources */,

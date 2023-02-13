@@ -155,6 +155,7 @@ final class ProfileViewController: UIViewController{
     
     private func clearAll() {
         oAuth2TokenStorage.removeAllKeys()
+        oAuth2TokenStorage.token = nil
         WebViewViewController.clean()
         tabBarController?.dismiss(animated: true)
         guard let window = UIApplication.shared.windows.first else {
@@ -176,7 +177,6 @@ final class ProfileViewController: UIViewController{
             guard let self = self else { return }
             DispatchQueue.main.async {
                 self.clearAll()
-                
             }
         }
         

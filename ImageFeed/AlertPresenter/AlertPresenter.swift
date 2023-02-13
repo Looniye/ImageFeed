@@ -6,8 +6,8 @@ final class AlertPresenter: AlertPresenterProtocol{
         self.delegate = delegate
     }
     
-    func showError(error model: AlertModel) {
-        let alert = UIAlertController(
+    func showAlert(error model: AlertModel) {
+        let alert = UIAlertController.init(
             title: model.title,
             message: model.message,
             preferredStyle: .alert
@@ -19,6 +19,7 @@ final class AlertPresenter: AlertPresenterProtocol{
                 model.completion()
             }
         ))
+        alert.view.accessibilityIdentifier = "Error Alert"
         delegate?.present(alert, animated: true)
     }
 }

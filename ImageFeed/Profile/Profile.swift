@@ -7,8 +7,11 @@ private enum CodingKeysForProfileResult: String, CodingKey {
     case bio
 }
 
-struct ProfileResult: Codable {
-    let username, firstName, lastName, bio: String?
+struct ProfileResult: Decodable {
+    var username: String?
+    var firstName: String?
+    var lastName: String?
+    var bio: String?
     
     enum CodingKeys: String, CodingKey {
         case username = "username"
@@ -18,16 +21,17 @@ struct ProfileResult: Codable {
     }
 }
 
-struct Profile: Decodable {
-    let username: String?
-    let name: String?
-    let bio: String?
-    var login: String?
+struct Profile {
+    let username: String
+    let name: String
+    let bio: String
+    var login: String
     
     init(decodedData: ProfileResult) {
-        self.username = decodedData.username
+        self.username = decodedData.username ?? ""
         self.name = (decodedData.firstName ?? "") + " " + (decodedData.lastName ?? "")
         self.login = "@" + (decodedData.username ?? "")
-        self.bio = decodedData.bio
+        self.bio = decodedData.bio ?? ""
     }
 }
+
