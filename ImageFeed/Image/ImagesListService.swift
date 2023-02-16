@@ -10,8 +10,6 @@ final class ImagesListService {
     static let didChangeNotification = Notification.Name(rawValue: "ImagesListServiceDidChange")
     private var lastLoadedPage: Int?
     
-    private init() {}
-    
     func fetchPhotosNextPage() {
         assert(Thread.isMainThread)
         if task != nil { return }
@@ -20,7 +18,7 @@ final class ImagesListService {
         let nextPage = lastLoadedPage == nil ? 1 : lastLoadedPage! + 1
         lastLoadedPage = lastLoadedPage == nil ? 1 : nextPage
         
-        var request = URLRequest(url: URL(string: "/photos?page=\(nextPage)&&per_page=10", relativeTo: defaultBaseUrl)!)
+        var request = URLRequest(url: URL(string: "/photos?page=\(nextPage)&&per_page=10", relativeTo: DefaultBaseURL)!)
         request.httpMethod = "GET"
         
         let token = token.token!
@@ -57,7 +55,7 @@ final class ImagesListService {
 extension ImagesListService {
     func changeLike(photoId: String, isLike: Bool, indexPath: Int, _ completion: @escaping (Result<Photo, Error>) -> Void) {
         
-        var request = URLRequest(url: URL(string: "/photos/\(photoId)/like", relativeTo: defaultBaseUrl)!)
+        var request = URLRequest(url: URL(string: "/photos/\(photoId)/like", relativeTo: DefaultBaseURL)!)
         request.httpMethod = isLike ? "POST" : "DELETE"
         
         let token = token.token!
