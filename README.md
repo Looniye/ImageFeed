@@ -5,6 +5,9 @@
 - [Дизайн в Figma](https://tinyurl.com/image-feed-figma)
 - [Unsplash API](https://unsplash.com/documentation)
 
+<img src="https://github.com/Looniye/ImageFeed/assets/40362717/b7bcead7-c3e2-4f29-9d27-d2eefe1427a8" width="300">
+<img src="https://github.com/Looniye/ImageFeed/assets/40362717/56a61420-3bfd-4d47-9c40-1db7a8c6b12a" width="300">
+
 # Назначение и цели приложения
 
 Многостраничное приложение предназначено для просмотра изображений через API Unsplash.
